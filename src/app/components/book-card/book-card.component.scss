@@ -1,0 +1,24 @@
+.book-card {
+    display: flex;
+    flex-direction: row;
+    background-color: #b8a99e;
+    border: 2px solid #150d1a;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 6px;
+    cursor: pointer;
+    min-width:800px;
+}
+.book-info-container {
+    display: flex;
+    flex-direction: column;
+}
+.cover-image {
+    width: 75px;
+    height: 100px;
+}
+
+.titleText {
+    font-size: 18px;
+    font-weight: 700;
+}

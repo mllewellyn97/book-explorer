@@ -1,0 +1,10 @@
+<div [routerLink]="['/book', book.key.split('/').pop()]" class="book-card">
+    <img class="cover-image" *ngIf="coverUrl" [src]="coverUrl" />
+    <img class="cover-image" *ngIf="!coverUrl" src="assets/no-image.svg" />
+    <div class="book-info-container">
+        <span class="titleText">{{ book.title }}</span>
+        <span *ngIf="book.author_name">
+            by {{ book.author_name.join(', ') }}
+        </span>
+    </div>
+</div>

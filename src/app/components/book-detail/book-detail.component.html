@@ -1,0 +1,10 @@
+<div *ngIf="book$ | async as book">
+<img 
+      *ngIf="book.covers?.length" 
+      [src]="'https://covers.openlibrary.org/b/id/' + book.covers[0] + '-L.jpg'"
+      alt="{{ book.title }}"
+      class="book-cover"
+    />
+  <h2>{{ book.title }}</h2>
+  <p>{{ book.description.value }}</p>
+</div>

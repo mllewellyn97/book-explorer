@@ -1,0 +1,10 @@
+<div *ngIf="loading" class="loading-container">
+    <div  class="loading-spinner"></div>
+</div>
+
+<ng-container *ngIf="!loading">
+    <div *ngIf="books.length;" class="book-list-wrapper">
+        <app-book-card *ngFor="let book of books" [book]="book"></app-book-card>
+    </div>
+
+</ng-container>

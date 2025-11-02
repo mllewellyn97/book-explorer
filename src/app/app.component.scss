@@ -1,0 +1,18 @@
+.explorer-header {
+    background-color: #0a0b0c;
+    color: white;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    gap: 12px;
+    align-items: center;
+
+}
+
+.book-image {
+    width: 36px;
+    height: 36px;
+    object-fit: cover;
+    cursor: pointer;
+}

@@ -1,0 +1,44 @@
+<div class="subheader">
+    <span>Start exploring new books to read! Get started by entering the title in the search bar
+        below.
+    </span>
+</div>
+
+<div class="search-container">
+    <div class="search-wrapper">
+        <input class="book-search-bar" [(ngModel)]="titleQuery" type="text" placeholder="Enter the book title...">
+
+        <button mat-icon-button (click)="clearQueries()">
+            <mat-icon>close</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="toggleFilters()">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <button mat-icon-button>
+            <mat-icon>sort</mat-icon>
+        </button>
+
+        <button (click)="searchByTitle()" mat-icon-button>
+            <mat-icon>search</mat-icon>
+        </button>
+    </div>
+</div>
+
+
+<div class="filter-dropdown" *ngIf="showFilters">
+    <div class="additional-filter-row">
+        <label class="additional-filter-label">
+            Author:
+        </label>
+        <input class="additional-search-bar" type="text" [(ngModel)]="authorQuery" placeholder="e.g. Tolkien" />
+    </div>
+
+    <div class="additional-filter-row">
+        <label class="additional-filter-label">
+            Subject:
+            <input class="additional-search-bar" type="text" [(ngModel)]="subjectQuery" placeholder="e.g. Fantasy" />
+        </label>
+    </div>
+</div>
