@@ -15,6 +15,7 @@ import { Subscription } from 'rxjs';
 export class BookListComponent implements OnInit, OnDestroy {
   books: any[] = [];
   loading: boolean = false;
+  hasSearched: boolean = false;
   private subs: Subscription = new Subscription;
 
   constructor(private bookService: BookServiceService) { }
@@ -22,6 +23,8 @@ export class BookListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subs.add(this.bookService.books$.subscribe(books => this.books = books));
     this.subs.add(this.bookService.loading$.subscribe(isLoading => this.loading = isLoading));
+    //makes no books found only appear after a user has searched
+    this.subs.add(this.bookService.hasSearched$.subscribe(didSearch => this.hasSearched = didSearch)); 
   }
 
   ngOnDestroy(): void {

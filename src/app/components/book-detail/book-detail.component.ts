@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { BookServiceService } from 'src/app/services/book-service.service';
 
@@ -13,20 +13,30 @@ import { BookServiceService } from 'src/app/services/book-service.service';
 })
 export class BookDetailComponent implements OnInit {
   book$: Observable<any> | undefined;
+  /**For loading skeletons */
+  imageLoaded: boolean = false;
+  bookLoaded: boolean = true;
+
   constructor(
     private route: ActivatedRoute,
     private bookService: BookServiceService
   ) { }
 
   ngOnInit(): void {
-    console.log("On init");
     this.book$ = this.route.params.pipe(
       switchMap(params => {
         const workId = params['workId'];
-        console.log("On init book detail");
-        console.log(workId);
+        this.bookLoaded = false;
+        this.imageLoaded = false;
         return this.bookService.getBookDetail(workId);
+      }),
+      tap(() => {
+        this.bookLoaded = true;
       })
     );
+  }
+
+  onImageLoad(): void {
+    this.imageLoaded = true;
   }
 }

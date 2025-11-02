@@ -1,11 +1,22 @@
+<div *ngIf="!imageLoaded" style="display: flex; justify-content: center; padding-top:20px">
+  <div class="load-skeleton"> Loading Book Details... </div>
+</div>
+
+
 <div class="book-detail-container" *ngIf="book$ | async as book">
   <div>
     <img *ngIf="book.covers?.length" [src]="'https://covers.openlibrary.org/b/id/' + book.covers[0] + '-L.jpg'"
-      alt="{{ book.title }}" class="book-cover" />
+      (load)="onImageLoad()" alt="{{ book.title }}" class="book-cover" />
+
+    <img *ngIf="!book.covers" (load)="onImageLoad()" src="assets/no-image.svg" alt="No Image Available" class="book-cover" />
+
   </div>
-  <div class="book-info-container">
-    <h2>{{ book.title }}</h2>
-    <p>{{ book.description.value }}</p>
+
+  <div *ngIf="imageLoaded" class="book-info-container">
+    <h2 class="book-detail-text">{{ book.title }}</h2>
+    <p *ngIf="book.description?.value">{{ book.description.value }}</p>
+    <p *ngIf="!book.description?.value && book.description">{{book.description}}</p>
+    <p *ngIf="!book.description?.value && !book.description" class="book-detail-text">No description available.</p>
   </div>
 
 </div>

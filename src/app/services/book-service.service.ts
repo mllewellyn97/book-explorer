@@ -8,8 +8,9 @@ import { BehaviorSubject, Observable, map, of } from 'rxjs';
 export class BookServiceService {
   private booksSubject = new BehaviorSubject<any[]>([]);
   private loadingSubject = new BehaviorSubject<boolean>(false);
-
+  private hasSearchedSubject = new BehaviorSubject<boolean>(false);
   loading$ = this.loadingSubject.asObservable();
+  hasSearched$ = this.hasSearchedSubject.asObservable();
   books$ = this.booksSubject.asObservable();
   constructor(private http: HttpClient) { }
 
@@ -24,7 +25,7 @@ export class BookServiceService {
     }
 
     this.loadingSubject.next(true);
-
+    this.hasSearchedSubject.next(true); //mark that it's searched
     const baseUrl = "https://openlibrary.org/search.json?";
     const params = [];
 
@@ -58,5 +59,6 @@ export class BookServiceService {
   }
   clearBooks() {
     this.booksSubject.next([]);
+    this.hasSearchedSubject.next(false);  //restore before search state
   }
 }

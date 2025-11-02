@@ -6,5 +6,5 @@
     <div *ngIf="books.length;" class="book-list-wrapper">
         <app-book-card *ngFor="let book of books" [book]="book"></app-book-card>
     </div>
-
+    <div *ngIf="!books.length && hasSearched;" class="no-books-found"> No Books Found </div>
 </ng-container>
